@@ -23,7 +23,7 @@ class myHandler(BaseHTTPRequestHandler):
   def mySetup(self):
     self.interfaceName = "myIface"
     self.parentInterfaceName = "eno1"
-    self.interfaceIP = "192.168.0.151"
+    self.interfaceIP = "192.168.0.151/24"
     self.gateway = "192.168.0.1"
 
   def CreateEndpoint(self):
@@ -32,7 +32,7 @@ class myHandler(BaseHTTPRequestHandler):
     output, error = runBashCmd(cmd)
 
     # Add an IP to the new interface
-    cmd = "ip addr add " + self.interfaceIP + "/24 dev " + self.interfaceName
+    cmd = "ip addr add " + self.interfaceIP + "dev " + self.interfaceName
     output, error = runBashCmd(cmd)
     #print output
 
@@ -45,7 +45,7 @@ class myHandler(BaseHTTPRequestHandler):
              # Since the "Interface" object we received was NOT empty, 
              # an empty response must be provided.
              #
-#            'Address':self.interfaceIP + '/24',
+#            'Address':self.interfaceIP,
 #            'AddressIPv6':'',
 #            'MacAddress':self.interfaceMac
           }
